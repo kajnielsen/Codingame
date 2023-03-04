@@ -1,15 +1,16 @@
-import sys
+import bisect, sys
 
-lst = []
+N = int(input())
+horses = []
+mini =  sys.maxsize
+diff = None
 
-def test(nums):
-    s = sorted(set(nums))
-    return min([[a, b] for a, b in zip(s, s[1:])], key=lambda x: x[1] - x[0])
+for i in range(N):
+    bisect.insort(horses, int(input()))
 
-n = int(input())
-for i in range(n):
-    pi = int(input())
-    lst.append(pi)
+for i in range(N-1):
+    diff = horses[i+1] - horses[i]
+    if diff < mini:
+        mini = diff
 
-rlst = test(lst)
-print(rlst[1] - rlst[0])
+print(mini)
