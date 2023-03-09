@@ -19,9 +19,10 @@ for i in range(0, w, 3):
     for j in range(h):
         for k in range(1, w, 3):
             if GL[j][0][k] == '-':
-                if k > AL:
+                print(abs(k))
+                if k > AL and (k - AL) < 3:
                     AL += 3
-                elif k < AL:
+                elif k < AL and (AL - k < 3):
                     AL -= 3
     print(f"{start_point}{GL[h-1][0][AL]}")
         
