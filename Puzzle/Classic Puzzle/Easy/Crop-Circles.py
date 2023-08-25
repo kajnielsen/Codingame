@@ -1,3 +1,5 @@
+import cProfile
+
 alphabet = "abcdefghijklmnopqrstuvwxyz"
 size_width, size_height = 19, 25
 
@@ -37,13 +39,16 @@ def draw():
         print()
 
 
-instructions = ["fg9", "ls11", "oe7"]
-for i in range(len(instructions)):
-    if "PLANTMOW" in instructions[i]:
-        updateField("PLANTMOW", instructions[i][len("PLANTMOW") :])
-    elif "PLANT" in instructions[i]:
-        updateField("PLANT", instructions[i][len("PLANT") :])
-    else:
-        updateField("MOW", instructions[i])
+def main(instructions):
+    for i in range(len(instructions)):
+        if "PLANTMOW" in instructions[i]:
+            updateField("PLANTMOW", instructions[i][len("PLANTMOW") :])
+        elif "PLANT" in instructions[i]:
+            updateField("PLANT", instructions[i][len("PLANT") :])
+        else:
+            updateField("MOW", instructions[i])
 
-draw()
+    draw()
+
+
+cProfile.run('main(["fg9", "ls11", "oe7"])', sort="ncalls")
